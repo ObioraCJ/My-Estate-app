@@ -26,7 +26,6 @@ export default function Header() {
         <Link to='/login'>
         <li className='hover:underline'>Login</li>
         </Link>
-        <li>Sign up</li>
       </ul>
      </div>
      
