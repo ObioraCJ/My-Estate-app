@@ -8,7 +8,10 @@ import {
   updateUserFailure, 
   deleteAccountFailure, 
   deleteAccountStart,
-  deleteAccountSuccess
+  deleteAccountSuccess,
+  signOutUserStart,
+  signOutUserFailure,
+  signOutUserSuccess
 } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 
@@ -97,7 +100,22 @@ export default function Profile() {
       }
       dispatch(deleteAccountSuccess(data));
     } catch (error) {
-      dispatch(deleteAccountFailure(error.message))
+      dispatch(deleteAccountFailure(error.message));
+    }
+  }
+
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/Api/auth/signOut');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+        dispatch(signOutUserSuccess(data));
+    } catch (error) {
+      dispatch(signOutUserFailure(data.message));
     }
   }
 
@@ -164,9 +182,11 @@ export default function Profile() {
        disabled:opacity-80"> {loading ? "Loading..." : "Update"} </button>
     </form>
     <div className="flex justify-between mt-4">
-      <span onClick={handleDeleteAccount} className="text-red-700 cursor-pointer
+      <span onClick={handleDeleteAccount} 
+      className="text-red-700 cursor-pointer
       hover:underline">Delete account</span>
-      <span className="text-red-700 cursor-pointer
+      <span onClick={handleSignOut} 
+      className="text-red-700 cursor-pointer
       hover:underline">Sign Out</span>
     </div>
     <p className="text-red-600 mt-1">{error ? error : ''}</p>
