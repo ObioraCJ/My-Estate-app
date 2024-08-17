@@ -8,6 +8,7 @@ import Header from './components/Header';
 import ProfileRoute from './components/ProfileRoute';
 import CreateListing from './Pages/CreateListing';
 import UpdateListing from './Pages/UpdateListing';
+import Listing from './Pages/Listing';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
     <Route path='/login' element={<SignIn />} />
     <Route path='/signup' element={<SignUp />} />
     <Route path='/about us' element={<About />} />
+    <Route path='/listing/:listingId' element={<Listing />} />
     <Route element={<ProfileRoute />}>
       <Route path='/profile' element={<Profile />} />
       <Route path='/create-listing' element={<CreateListing />} />
