@@ -96,7 +96,8 @@ return <main>
                         listing.offer && (
                             <p className='bg-green-900 text-center w-full p-1 text-white
                              rounded-md max-w-[200px]'>
-                              ${+listing.regularPrice - +listing.discountPrice}
+                              ${+listing.regularPrice - +listing.discountPrice} OFF
+                              
                             </p>
                         )
                     }
