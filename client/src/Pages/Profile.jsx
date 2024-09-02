@@ -17,7 +17,7 @@ import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 
 export default function Profile() {
-  const fileRef = useRef(null)
+  const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
   const [uploadPerc, setUploadPerc] = useState(0)
@@ -83,8 +83,7 @@ export default function Profile() {
         dispatch(updateUserFailure(data.message));
         return;
       }
-
-      dispatch(updateUserSuccess(data.message));
+      dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
@@ -219,6 +218,8 @@ export default function Profile() {
        <button disabled={loading} className="bg-teal-950 text-white
        rounded-lg p-2 uppercase hover:opacity-90
        disabled:opacity-80"> {loading ? "Loading..." : "Update"} </button>
+       
+       
        <Link className="bg-pink-700 text-center text-white uppercase 
        rounded-lg p-2 hover:opacity-90"
         to= {'/create-listing'}>
